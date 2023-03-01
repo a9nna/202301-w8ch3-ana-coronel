@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User, UserState } from "../../../types";
+import { Product, User, UserState } from "../../../types";
 
 const initialUserState: UserState = {
   username: "",
@@ -21,6 +21,13 @@ const userSlice = createSlice({
       isLogged: true,
     }),
     logoutUser: (): UserState => ({ ...initialUserState }),
+    addItemToShoppingList: (
+      currentUserState: UserState,
+      action: PayloadAction<Product>
+    ): UserState => ({
+      ...currentUserState,
+      shoppingList: [...currentUserState.shoppingList, action.payload],
+    }),
   },
 });
 
@@ -28,4 +35,5 @@ export const userReducer = userSlice.reducer;
 export const {
   loginUser: loginUserActionCreator,
   logoutUser: logoutUserActionCreator,
+  addItemToShoppingList: addItemToShoppingListActionCreator,
 } = userSlice.actions;
