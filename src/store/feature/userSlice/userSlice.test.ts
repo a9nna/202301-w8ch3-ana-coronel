@@ -1,6 +1,10 @@
 import { UserState } from "../../../types";
 import { User } from "../../../types";
-import { loginUserActionCreator, userReducer } from "./userSlice";
+import {
+  loginUserActionCreator,
+  logoutUserActionCreator,
+  userReducer,
+} from "./userSlice";
 
 describe("Given the userReducer funcion", () => {
   describe("When is invoke with the currentUserState and an action to login the user", () => {
@@ -26,6 +30,31 @@ describe("Given the userReducer funcion", () => {
       const newUserState: UserState = userReducer(
         currentUserState,
         loginUserActionCreator(newUser)
+      );
+
+      expect(newUserState).toStrictEqual(expectedNewUserState);
+    });
+  });
+
+  describe("When it's invoked and receives a currentUserState and a logout action to log out the user", () => {
+    test("Then it should return the new state with the user logged out", () => {
+      const currentUserState: UserState = {
+        username: "Alex",
+        adress: "Torrelletes",
+        shoppingList: [],
+        isLogged: true,
+      };
+
+      const expectedNewUserState: UserState = {
+        username: "",
+        adress: "",
+        shoppingList: [],
+        isLogged: false,
+      };
+
+      const newUserState: UserState = userReducer(
+        currentUserState,
+        logoutUserActionCreator()
       );
 
       expect(newUserState).toStrictEqual(expectedNewUserState);
