@@ -7,7 +7,7 @@
   - username
   - adress
   - isLogged
-  - shoppingCard
+  - shoppingList
 
 - Products:
 
