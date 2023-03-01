@@ -9,6 +9,7 @@ export interface UserState extends User {
 }
 
 export interface Product {
+  id: number;
   name: string;
   image: string;
   price: number;

@@ -71,6 +71,7 @@ describe("Given the userReducer funcion", () => {
         isLogged: true,
       };
       const product: Product = {
+        id: 1,
         name: "potatoe",
         image: "potatoe.png",
         price: 3,
